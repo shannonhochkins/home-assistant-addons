@@ -1,0 +1,75 @@
+{
+  "init": false,
+  "slug": "public_folders",
+  "name": "Public Folders",
+  "version": "1.0.0",
+  "description": "Public Folders.",
+  "stage": "stable",
+  "arch":
+  [
+    "armhf",
+    "armv7",
+    "aarch64",
+    "amd64",
+    "i386"
+  ],
+  "startup": "services",
+  "boot": "auto",
+  "map":
+  [
+    "media:ro"
+  ],
+  "ports":
+  {
+    "8080/tcp": 8044
+  },
+  "ports_description":
+  {
+    "8080/tcp": "Port to serve files on."
+  },
+  "options":
+  {
+    "folders":
+    [
+      {
+        "url": "media",
+        "path": "/media"
+      }
+    ],
+    "index": ["index.html"],
+    "request_logging": false,
+    "directory_listing": false
+  },
+  "schema":
+  {
+    "folders":
+    [
+      {
+        "url": "str",
+        "path": "str",
+        
+        "index": ["str?"],
+        "inherits": ["str?"],
+
+        "request_logging": "bool?",
+        "directory_listing": "bool?",
+        
+        "page_401": "str?",
+        "page_402": "str?",
+        "page_403": "str?",
+        "page_404": "str?"
+      }
+    ],
+
+    "index": ["str?"],
+    "request_logging": "bool",
+    "directory_listing": "bool",
+    "key": "str?",
+    "cert": "str?",
+
+    "page_401": "str?",
+    "page_402": "str?",
+    "page_403": "str?",
+    "page_404": "str?"
+  }
+}
