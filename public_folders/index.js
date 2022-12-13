@@ -9,7 +9,7 @@ const path = require('path');
 /***************************************************************************************************************************
  * Load Enviroment Values
 ***************************************************************************************************************************/
-const PORT = process.env.PORT || 8044;
+const PORT = process.env.PORT || 8080;
 const OPTIONS = process.env.OPTIONS || "./development/options.json";
 
 /***************************************************************************************************************************
@@ -307,14 +307,22 @@ const handelRequest = (req, res) => {
 ***************************************************************************************************************************/
 
 if (config.key && config.cert) {
-	const options = {
-		key: fs.readFileSync(config.key),
-		cert: fs.readFileSync(config.cert)
-	};
-	console.log(`Starting HTTPS server on port ${PORT}`);
-	https.createServer(options, handelRequest).listen(PORT, () => {
-		console.log(`HTTPS server started on port "${PORT}".`);
-	});
+	try {
+		const options = {
+			key: fs.readFileSync(config.key),
+			cert: fs.readFileSync(config.cert)
+		};
+		console.log(`Starting HTTPS server on port ${PORT}`);
+		https.createServer(options, handelRequest).listen(PORT, () => {
+			console.log(`HTTPS server started on port "${PORT}".`);
+		});
+	} catch (e) {
+		console.log('error', error);
+		console.log(`Fallback, Starting HTTP server on port ${PORT}`);
+		http.createServer(handelRequest).listen(PORT, () => {
+			console.log(`HTTP server started on port "${PORT}".`);
+		});
+	}
 } else {
 	console.log(`Starting HTTP server on port ${PORT}`);
 	http.createServer(handelRequest).listen(PORT, () => {

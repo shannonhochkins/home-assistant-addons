@@ -2,7 +2,7 @@
   "init": false,
   "slug": "public_folders",
   "name": "Public Folders",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Public Folders.",
   "stage": "stable",
   "arch":
@@ -17,11 +17,12 @@
   "boot": "auto",
   "map":
   [
-    "media:ro"
+    "media:ro",
+    "config:ro"
   ],
   "ports":
   {
-    "8080/tcp": 8044
+    "8080/tcp": 8080
   },
   "ports_description":
   {
@@ -34,11 +35,17 @@
       {
         "url": "media",
         "path": "/media"
+      },
+      {
+        "url": "config",
+        "path": "/config"
       }
     ],
+    "key": "/config/www/key.pem",
+    "cert": "/config/www/cert.pem",
     "index": ["index.html"],
-    "request_logging": false,
-    "directory_listing": false
+    "request_logging": true,
+    "directory_listing": true
   },
   "schema":
   {
