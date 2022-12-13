@@ -168,6 +168,7 @@ sendFile = (req, res, dir) => {
  * Send Directory Client.
 ***************************************************************************************************************************/
 sendDirectory = (req, res, dir) => {
+	console.log('req', req.file_path);
 	fs.readdir(req.file_path, (err, files) => {
 		if (err && err.code == 'ENOENT') return sendError(req, res, dir, "404");
 		if (err) return sendError(req, res, dir, "401", err);
