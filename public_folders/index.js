@@ -317,7 +317,7 @@ if (config.key && config.cert) {
 			console.log(`HTTPS server started on port "${PORT}".`);
 		});
 	} catch (e) {
-		console.log('error', error);
+		console.log('error', e);
 		console.log(`Fallback, Starting HTTP server on port ${PORT}`);
 		http.createServer(handelRequest).listen(PORT, () => {
 			console.log(`HTTP server started on port "${PORT}".`);
