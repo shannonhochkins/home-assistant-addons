@@ -2,7 +2,7 @@
   "init": false,
   "slug": "public_folders",
   "name": "Public Folders",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Public Folders.",
   "stage": "stable",
   "arch":
